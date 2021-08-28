@@ -1,0 +1,3 @@
+#!/bin/sh
+
+docker-compose run --rm db mysql -h db -u root --password=root

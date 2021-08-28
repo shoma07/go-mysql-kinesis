@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7.12
+    environment:
+      TZ: UTC
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./mysql/initdb/:/docker-entrypoint-initdb.d/
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - dbdata:/var/lib/mysql
+  app:
+    build:
+      context: .
+      dockerfile: dockerfiles/development/Dockerfile
+    volumes:
+      - ./:/go/src/app
+    depends_on:
+      - db
+
+
+volumes:
+  dbdata:
+    driver: local
