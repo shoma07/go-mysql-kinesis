@@ -7,11 +7,6 @@ import (
 	"github.com/go-mysql-org/go-mysql/mysql"
 )
 
-type MyEventHandler struct {
-	canal.DummyEventHandler
-}
-
-// NOTE:
 type Producer struct {
 	canal     *canal.Canal
 	pos       *Position
